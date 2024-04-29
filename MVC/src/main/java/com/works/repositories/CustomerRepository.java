@@ -1,0 +1,15 @@
+package com.works.repositories;
+
+import com.works.entities.Customer;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.Optional;
+
+public interface CustomerRepository extends JpaRepository<Customer, Long> {
+
+    Optional<Customer> findByUsernameEqualsIgnoreCaseAndPasswordEquals(String username, String password);
+
+    // select * customer where username = ? and password  = ?
+    // Optional<Customer> findCustomerByUsernameAndPassword(String username, String password);
+
+}
