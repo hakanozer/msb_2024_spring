@@ -18,6 +18,10 @@
             <div class="col-sm-4"></div>
             <div class="col-sm-4">
                 <h2>User Login</h2>
+                <div th:if="${error != null}" class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>Error!</strong> <th:block th:text="${error}"></th:block>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
                 <form action="/login" method="post">
                     <div class="mb-3">
                         <input name="username" class="form-control" placeholder="Username" />

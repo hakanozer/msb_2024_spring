@@ -31,10 +31,18 @@ public class IndexController {
      */
 
     @PostMapping("login")
-    public String login(Customer customer) {
+    public String login(Customer customer, Model model) {
         boolean status = customerService.login(customer);
-        System.out.println("Login Status : " + status);
-        return "index";
+        if(!status) {
+            model.addAttribute("error", "Username or Password fail!");
+        }
+        return status ? "redirect:/dashboard" : "index";
+    }
+
+    @GetMapping("logout")
+    public String logout(){
+        customerService.logout();
+        return "redirect:/";
     }
 
 }

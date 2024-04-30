@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/template}">
+
+<div layout:fragment="app-content">
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Not Add</h3>
+            <form>
+                <div class="mb-3">
+                    <input name="title" class="form-control" placeholder="Title" />
+                </div>
+                <div class="mb-3">
+                    <input name="detail" class="form-control" placeholder="Detail" />
+                </div>
+                <div class="mb-3">
+                    <input name="noteDate" type="datetime-local" class="form-control" placeholder="Date" />
+                </div>
+                <div class="mb-3">
+                    <input name="color" type="color" class="form-control form-control-color" placeholder="Color" />
+                </div>
+                <button class="btn btn-success">Save</button>
+            </form>
+        </div>
+        <div class="col-sm-6">
+            <h3>Not List</h3>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Detail</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Color</th>
+                    <th scope="col">Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td>@mdo</td>
+                    <td>
+                        <a class="btn btn-danger btn-sm" href="/">Delete</a>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+</html>
