@@ -9,7 +9,15 @@
     <div class="row">
         <div class="col-sm-6">
             <h3>Not Add</h3>
-            <form>
+            <th:block th:if="${errors != null}">
+                <div th:each="item : ${errors}">
+                    <div class="alert alert-danger alert-sm alert-dismissible fade show" role="alert">
+                        <strong th:text="${item.getField()}"></strong> <th:block th:text="${item.getDefaultMessage()}"></th:block>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+            </th:block>
+            <form action="noteSave" method="post">
                 <div class="mb-3">
                     <input name="title" class="form-control" placeholder="Title" />
                 </div>
@@ -40,16 +48,20 @@
                 </thead>
                 <tbody>
 
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
+                <th:block th:if="${ls != null}">
+                <tr th:each="item : ${ls}">
+                    <th scope="row" th:text="${item.nid}"></th>
+                    <td th:text="${item.title}"></td>
+                    <td th:text="${item.detail}"></td>
+                    <td th:text="${item.noteDate}"></td>
                     <td>
-                        <a class="btn btn-danger btn-sm" href="/">Delete</a>
+                        <div th:style="'width: 20px; height: 20px; background-color: '+${item.color}"></div>
+                    </td>
+                    <td>
+                        <a class="btn btn-danger btn-sm" th:href="'delete/'+${item.nid}">Delete</a>
                     </td>
                 </tr>
+                </th:block>
 
                 </tbody>
             </table>
