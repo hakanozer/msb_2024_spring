@@ -4,6 +4,7 @@ import com.works.entities.Customer;
 import com.works.models.Result;
 import com.works.repositories.CustomerRepository;
 import com.works.utils.Util;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ public class CustomerService {
 
     final CustomerRepository customerRepository;
     final TinkEncDec tinkEncDec;
+    final HttpServletRequest req;
 
     public ResponseEntity register(Customer customer ) {
         Optional<Customer> optionalCustomer = customerRepository.findByUsernameEqualsIgnoreCase(customer.getUsername());
@@ -37,6 +39,7 @@ public class CustomerService {
             String dbPass = tinkEncDec.decrypt(c.getPassword());
             if (dbPass.equals(password)) {
                 c.setPassword("*****");
+                req.getSession().setAttribute("customer", c);
                 return Util.success(c);
             }
         }
